@@ -8,8 +8,8 @@ export default function Form() {
       const themeSetting = useSelector((state) => state.theme.data.design);
   return (
     <>
-    {themeSetting.theme === 1 && <FormDesign1/>}
-    {themeSetting.theme === 2 && <FormDesign2/>}
+      {themeSetting && themeSetting.theme === 1 && <FormDesign1/>}
+      {themeSetting && themeSetting.theme === 2 && <FormDesign2/>}
     </>
   )
 }

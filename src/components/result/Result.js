@@ -6,11 +6,10 @@ import ResultTheme2 from './ResultTheme2';
 export default function Result() {
 
     const themeSetting = useSelector((state) => state.theme.data.design);
-    const resultDetailData = useSelector((state) => state.resultDetail.data);
   return (
     <>
-    { themeSetting.theme === 1 && <ResultTheme1/>}
-    { themeSetting.theme === 2 && <ResultTheme2/>}
+    { themeSetting && themeSetting.theme === 1 && <ResultTheme1/>}
+    { themeSetting && themeSetting.theme === 2 && <ResultTheme2/>}
     </>
   )
 }
