@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 
 export default function Header() {
-  const themeSetting = useSelector((state) => state.theme.data.data.design);
+      const themeSetting = useSelector((state) => state.theme.data.design);
 
   return (
     <div className=' my-[30px] mx-auto'>

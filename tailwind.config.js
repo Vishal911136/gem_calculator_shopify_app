@@ -2,7 +2,13 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'inria-serif': ['"Inria Serif"', 'serif'],
+        'inter': ['"Inter"', 'sans-serif'],
+        'libre-baskerville': ['"Libre Baskerville"', 'serif'],
+      }
+    },
   },
   plugins: [],
 }

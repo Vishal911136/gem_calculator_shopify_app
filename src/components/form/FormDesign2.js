@@ -4,7 +4,7 @@ import instance from "../../axiosConfig";
 import { useSelector } from "react-redux";
 
 export default function FormDesign2() {
-  const themeSetting = useSelector((state) => state.theme.data.data.design);
+      const themeSetting = useSelector((state) => state.theme.data.design);
 
   const [name,setName] = useState();
   const [email,setEmail] = useState();
@@ -88,10 +88,10 @@ export default function FormDesign2() {
   return (
     <>
           <form
-            className="rounded-[10px] col-span-3 lg:col-span-2 w-auto bg-white/0 backdrop-blur-[2px] p-[25px] md:px-[80px] md:py-[0px] sm:p-[35px] relative my-[100px]"
+            className=" rounded-[10px] col-span-3 lg:col-span-2 w-auto bg-white/0 backdrop-blur-[2px] p-[25px] md:px-[80px] md:py-[0px] sm:p-[35px] relative my-[100px]"
             onSubmit={findGems}
           >
-            <div className="flex justify-center items-center pb-[30px]">
+            <div className="flex  items-center pb-[30px]">
               <img className="w-[80px] sm:w-[150px] rounded-[50%]" src="https://www.figma.com/file/oirTjXA2lj1adQiUhGg1tn/image/a72ce21712b5bac7c83afcf67ade9269561327cf" />
               <div className="ms-[10px] sm:ms-[30px] flex flex-col justify-center">
                 <h6 className="text-[14px] sm:text-[20px] lg:text-[32px] font-[400] sm:font-[500] leading-none">{themeSetting.title.enable && themeSetting.title.text}</h6>

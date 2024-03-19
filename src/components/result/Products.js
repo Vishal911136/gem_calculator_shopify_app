@@ -3,7 +3,7 @@ import React from 'react'
 export default function Products() {
   return (
     <>
-<div className="flex justify-center items-center w-[90%] sm:w-[80%] mx-auto pb-[20px]">
+<div className="bg-[#F2EEEA]  flex justify-center items-center mx-auto pb-[60px] w-[80%] mb-[40px] rounded-bl-[40px] rounded-br-[40px] px-[20px]">
   <div className="md:px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
     <div className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
       <div className="relative">
