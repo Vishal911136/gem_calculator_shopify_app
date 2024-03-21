@@ -1,10 +1,13 @@
 import React, {useState } from "react";
 import { calculateResult } from "../commonFun";
 import instance from "../../axiosConfig";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addResultDetail } from "../../features/resultSlice";
 
 export default function FormDesign3() {
-      const themeSetting = useSelector((state) => state.theme.data.design);
+  const dispatch = useDispatch();
+  const themeSetting = useSelector((state) => state.theme.data.design);
+  
 
   const [name,setName] = useState();
   const [email,setEmail] = useState();
@@ -16,14 +19,14 @@ export default function FormDesign3() {
   const [time,setTime] = useState();
   const [place,setPlace] = useState('');
 
-  const [loading,setLoading] = useState(true);
-  const [records,setRecords] = useState([]);
+  // const [loading,setLoading] = useState(true);
+  // const [records,setRecords] = useState([]);
   const [cityList,setCityList] = useState([]);
   const [finalCityList, setFinalCityList] = useState([]);
   const [placemsg, setPlacemsg] = useState("");
 
 
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
 
   let apiUrl = process.env.REACT_APP_GEMTOOL_API_URL;
@@ -63,9 +66,9 @@ export default function FormDesign3() {
   };
 
 
-  const findGems = (event) =>{
+  const findGems = async(event) =>{
     event.preventDefault();
-    setIsOpen(true)
+    // setIsOpen(true)
      let records = {
         id: Date.now(),
         name,
@@ -79,30 +82,32 @@ export default function FormDesign3() {
         place
       }
       
-      calculateResult(event, records)
-      // console.log(records)
+      let data = await calculateResult(event, records)
       
+      dispatch(addResultDetail(data))
+      let resultView = document.getElementById('resultView');
+      resultView && resultView.scrollIntoView({behavior: 'smooth'});
   }
 
 
   return (
     <>
           <form
-            className=" rounded-[10px] col-span-3 lg:col-span-2 w-auto bg-white/0 backdrop-blur-[2px] p-[25px] md:px-[80px] md:py-[0px] sm:p-[35px] relative my-[100px]"
+            className=" rounded-[10px] col-span-3 lg:col-span-2 lg:w-[60%] lg:ms-auto bg-white/60 backdrop-blur-[2px] p-[25px] md:px-[40px] md:py-[50px] sm:p-[35px] relative mt-[100px] mb-[30px]"
             onSubmit={findGems}
           >
-            <div className="flex  items-center pb-[30px]">
-              <img className="w-[80px] sm:w-[150px] rounded-[50%]" src="https://www.figma.com/file/oirTjXA2lj1adQiUhGg1tn/image/a72ce21712b5bac7c83afcf67ade9269561327cf" />
-              <div className="ms-[10px] sm:ms-[30px] flex flex-col justify-center">
-                <h6 className="text-[14px] sm:text-[20px] lg:text-[32px] font-[400] sm:font-[500] leading-none">{themeSetting.title.enable && themeSetting.title.text}</h6>
-                <h6 className="text-[#813C01] text-[10px] md:text-[20px] leading-none sm:pb-[20px] font-[500] font-libra mt-[8px] sm:mt-[10px]">Fill the form to get result:</h6>
+            <div className="flex items-center pb-[20px]">
+              <div className="">
+                <h6 className="text-[14px] sm:text-[20px] lg:text-[32px] font-[400] sm:font-[500] leading-none font-inria-serif">{themeSetting.title.enable && themeSetting.title.text}</h6>
+                <h6 style={{color: themeSetting && themeSetting.form.color}} className="text-[#813C01] text-[10px] md:text-[20px] leading-none sm:pb-[20px] font-[500] font-inria-serif mt-[8px] sm:mt-[10px]">Fill the form to get result:</h6>
               </div>
             </div>
-            <div className="bg grid grid-cols-1 gap-x-[25px] gap-y-[20px] sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+            <div className="bg grid grid-cols-1 gap-x-[25px] gap-y-[10px] sm:grid-cols-2">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-[14px] tracking-normal sm:text-[16px]  mb-[4px] text-[#664421] font-manrope"
+                  style={{color: themeSetting && themeSetting.form.color}}
+                  className="block text-[14px] tracking-normal sm:text-[16px]  mb-[4px] text-[#664421] font-inter font-[400]"
                 >
                   Enter your name
                 </label>
@@ -113,7 +118,7 @@ export default function FormDesign3() {
                     name="name"
                     id="name"
                     autoComplete="given-name"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full rounded-[2px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setName(e.target.value)} 
                     required
                   />
@@ -122,7 +127,8 @@ export default function FormDesign3() {
               <div>
                 <label
                   htmlFor="last-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  style={{color: themeSetting && themeSetting.form.color}}
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[400]"
                 >
                   Enter your email
                 </label>
@@ -133,7 +139,7 @@ export default function FormDesign3() {
                     name="email"
                     id="email"
                     autoComplete="email"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full rounded-[2px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     
@@ -144,7 +150,8 @@ export default function FormDesign3() {
               <div>
                 <label
                   htmlFor="first-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  style={{color: themeSetting && themeSetting.form.color}}
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[400]"
                 >
                   Enter your phone number
                 </label>
@@ -155,7 +162,7 @@ export default function FormDesign3() {
                     name="phone"
                     id="phone"
                     autoComplete="given-name"
-                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-[2px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setMobile(e.target.value)}
                     required
                   />
@@ -164,7 +171,8 @@ export default function FormDesign3() {
               <div>
                 <label
                   htmlFor="last-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  style={{color: themeSetting && themeSetting.form.color}}
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[400]"
                 >
                   Enter your gender
                 </label>
@@ -173,7 +181,7 @@ export default function FormDesign3() {
                     id="countries"
                     onChange={(e) => setGender(e.target.value)}
                     required
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full rounded-[2px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-inter font-[400]"
                   >
                     <option value="">Gender</option>
                     <option value="male">Male</option>
@@ -185,14 +193,15 @@ export default function FormDesign3() {
               <div>
                 <label
                   htmlFor="first-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  style={{color: themeSetting && themeSetting.form.color}}
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[400]"
                 >
                   Purpose to wear gemstone
                 </label>
                 <div className="select-container">
                   <select
                     id="countries"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full rounded-[2px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setPurpose(e.target.value)}
                     required
                     
@@ -213,7 +222,8 @@ export default function FormDesign3() {
               <div>
                 <label
                   htmlFor="last-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  style={{color: themeSetting && themeSetting.form.color}}
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[400]"
                 >
                   Body weight (in kg)
                 </label>
@@ -224,7 +234,7 @@ export default function FormDesign3() {
                     name="last-name"
                     id="last-name"
                     autoComplete="family-name"
-                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-[2px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setBodyWeight(e.target.value)}
                     required
                     
@@ -235,7 +245,8 @@ export default function FormDesign3() {
               <div>
                 <label
                   htmlFor="first-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  style={{color: themeSetting && themeSetting.form.color}}
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[400]"
                 >
                   Enter your birth date
                 </label>
@@ -246,7 +257,7 @@ export default function FormDesign3() {
                     id="first-name"
                     placeholder="Date"
                     autoComplete="given-name"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full rounded-[2px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setDate(e.target.value)}
                     required
                     
@@ -256,14 +267,15 @@ export default function FormDesign3() {
 
               <div>
                 <label
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  style={{color: themeSetting && themeSetting.form.color}}
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[400]"
                 >
                   Enter your birth time
                 </label>
                 <div className="">
                   <input
                     autoComplete="given-name"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full rounded-[2px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setTime(e.target.value)}
                     required
                     id="appt-time"
@@ -277,7 +289,8 @@ export default function FormDesign3() {
               <div className="relative">
                 <label
                   htmlFor="first-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  style={{color: themeSetting && themeSetting.form.color}}
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[400]"
                 >
                   Enter your birth place
                 </label>
@@ -288,7 +301,7 @@ export default function FormDesign3() {
                     id="first-name"
                     autoComplete="given-name"
                     list="timeZonesValue"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full rounded-[2px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => fetchLocation(e)}
                     required
                     value={place}
@@ -316,10 +329,11 @@ export default function FormDesign3() {
               </div>
 
             </div>
-            <div className=" mt-[40px] w-full md:w-[60%] mx-auto">
+            <div className="mt-[15px] w-full">
                 <button
                     type="submit"
-                    className="block w-full  rounded-[40px] px-4 py-[12px] sm:py-[12px] text-center text-[20px] font-[500] bg-[#00182E] text-white hover:shadow-lg hover:bg-[#F0ECE9] hover:text-[#664421] hover:outline outline-1 outline-[#664421] duration-[.3s]"
+                    style={{backgroundColor: themeSetting && themeSetting.form.color}}
+                    className="block w-full  rounded-[2px] px-4 py-[12px] sm:py-[12px] text-center text-[20px] font-[500] bg-[#00182E] text-white hover:shadow-lg hover:bg-[#F0ECE9] hover:outline outline-1 duration-[.3s]"
                     >
                     Submit
                 </button>

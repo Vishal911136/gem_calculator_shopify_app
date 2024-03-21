@@ -1,46 +1,90 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { getProductSuggestions } from '../commonFun';
 
 export default function Products() {
+  const themeSetting = useSelector((state) => state.theme.data.design);
+  const resultDetailData = useSelector((state) => state.resultDetail && state.resultDetail.data);
+  const rudrakshList = useSelector((state) => state.theme && state.theme.data && state.theme.data.rudraksh);
+  const gemsList = useSelector((state) => state.theme && state.theme.data && state.theme.data.gems);
+  const braceletList = useSelector((state) => state.theme && state.theme.data && state.theme.data.bracelet);
+
+  const [products,setProducts] = useState("");
+  
+  useEffect(() =>{
+    const rudrakshName = resultDetailData && resultDetailData.data && resultDetailData.data.rudraksh[0].name;
+    const gemsName = resultDetailData && resultDetailData.data && resultDetailData.data.gems[0].name;
+    const braceletName = resultDetailData && resultDetailData.data && resultDetailData.data.bracelet;
+
+    let braceletNameArr = [];
+    braceletName && braceletName.forEach((value) =>{
+      braceletNameArr.push(value.name)
+    })
+    // console.log(braceletNameArr);
+    const productList = {rudrakshList,braceletList,gemsList}
+    let result = getProductSuggestions(gemsName,rudrakshName,braceletNameArr,productList)
+    setProducts(result)
+  },[resultDetailData,braceletList, gemsList, rudrakshList])
+  
   return (
     <>
-<div className="bg-[#F2EEEA]  flex justify-center items-center mx-auto pb-[60px] w-[80%] mb-[40px] rounded-bl-[40px] rounded-br-[40px] px-[20px]">
-  <div className="md:px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
-    <div className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
-      <div className="relative">
-        <img className="w-full rounded-[10px]" src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Colors" />
+<div className="  flex justify-center items-center mx-auto rounded-bl-[40px] rounded-br-[40px] mt-[40px]">
+  <div className="md:px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[12px] px-[20px] sm:p-0">
+
+    {
+      products && products.rudrakshProduct && products.rudrakshProduct.map((value,index) =>{
+        return (
+          <div key={index} className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
+            <div className="relative">
+              <img className="w-full rounded-[10px]" src={value.img} alt="Colors" />
+              </div>
+            <h1 className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">{value.name}</h1>
+            <div className="my-[8px] text-center">
+              <a target='_blank' rel="noreferrer" href={value.link} style={{backgroundColor: themeSetting.form.color}} className=" mt-[6px] text-[16px] px-[12px] text-white bg-indigo-600 py-[8px] rounded-[4px]">Buy Now</a>
+            </div>
+          </div>          
+        )
+      })
+    }
+
+  {
+      products && products.gemsProduct && products.gemsProduct.map((value,index) =>{
+        return (
+          <div key={index} className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
+            <div className="relative">
+              <img className="w-full rounded-[10px]" src={value.img} alt="Colors" />
+              </div>
+            <h1 className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">{value.name}</h1>
+            <div className="my-[8px] text-center">
+              <a target='_blank' rel="noreferrer" href={value.link} style={{backgroundColor: themeSetting.form.color}} className=" mt-[6px] text-[16px] px-[12px] text-white bg-indigo-600 py-[8px] rounded-[4px]">Buy Now</a>
+            </div>
+          </div>          
+        )
+      })
+    }
+
+
+{
+  products && products.braceletProduct && products.braceletProduct.map((productGroup, groupIndex) => {
+    return(
+    <div key={`group-${groupIndex}`}>
+      {productGroup.map((value, index) => {
+        return(
+        <div key={`product-${groupIndex}-${index}`} className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
+          <div className="relative">
+            <img className="w-full rounded-[10px]" src={value.img} alt={value.name} />
+          </div>
+          <h1 className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">{value.name}</h1>
+          <div className="my-[8px] text-center">
+            <a target='_blank' rel="noreferrer" href={value.link} style={{backgroundColor: themeSetting.form.color}} className="mt-[6px] text-[16px] px-[12px] text-white bg-indigo-600 py-[8px] rounded-[4px]">Buy Now</a>
+          </div>
         </div>
-      <h1 className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">Javascript Bootcamp for Absolute Beginners</h1>
-      <div className="my-[8px] text-center">
-        <button className=" mt-[6px] text-[16px] px-[12px] text-white bg-indigo-600 py-[8px] rounded-[4px]">Buy Lesson</button>
-      </div>
+      )})
+      }
     </div>
-    <div className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
-      <div className="relative">
-        <img className="w-full rounded-[10px]" src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Colors" />
-        </div>
-      <h1 className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">Javascript Bootcamp for Absolute Beginners</h1>
-      <div className="my-[8px] text-center">
-        <button className=" mt-[6px] text-[16px] px-[12px] text-white bg-indigo-600 py-[8px] rounded-[4px]">Buy Lesson</button>
-      </div>
-    </div>
-    <div className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
-      <div className="relative">
-        <img className="w-full rounded-[10px]" src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Colors" />
-        </div>
-      <h1 className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">Javascript Bootcamp for Absolute Beginners</h1>
-      <div className="my-[8px] text-center">
-        <button className=" mt-[6px] text-[16px] px-[12px] text-white bg-indigo-600 py-[8px] rounded-[4px]">Buy Lesson</button>
-      </div>
-    </div>
-    <div className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
-      <div className="relative">
-        <img className="w-full rounded-[10px]" src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Colors" />
-        </div>
-      <h1 className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">Javascript Bootcamp for Absolute Beginners</h1>
-      <div className="my-[8px] text-center">
-        <button className=" mt-[6px] text-[16px] px-[12px] text-white bg-indigo-600 py-[8px] rounded-[4px]">Buy Lesson</button>
-      </div>
-    </div>
+  )})
+}
+
     
   </div>
 </div>  

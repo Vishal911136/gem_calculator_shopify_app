@@ -603,3 +603,19 @@ export function getMoonSignSvg (signName, themeColor){
           break;
   }
 }
+
+
+export function getProductSuggestions(gems,rudraksh,bracelet,productList){
+    if(gems && rudraksh && bracelet && productList){
+        let braceletProduct = bracelet.map((name) =>{
+            return productList.braceletList.filter(value => name.toLowerCase() === value.name.toLowerCase());
+        })
+        let gemsProduct = productList.gemsList && productList.gemsList.filter(value => {return (value.name).toLowerCase() === gems.toLowerCase()});
+        let rudrakshProduct = productList.rudrakshList && productList.rudrakshList.filter(value => {return (value.name).toLowerCase() === rudraksh.toLowerCase()});
+        
+        return {gemsProduct, rudrakshProduct,braceletProduct};
+
+    }
+
+
+}

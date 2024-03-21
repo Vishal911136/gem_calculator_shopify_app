@@ -1,10 +1,12 @@
 import React, {useState } from "react";
 import { calculateResult } from "../commonFun";
 import instance from "../../axiosConfig";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addResultDetail } from "../../features/resultSlice";
 
 export default function FormDesign2() {
-      const themeSetting = useSelector((state) => state.theme.data.design);
+  const themeSetting = useSelector((state) => state.theme.data.design);
+  const dispatch = useDispatch();
 
   const [name,setName] = useState();
   const [email,setEmail] = useState();
@@ -16,14 +18,14 @@ export default function FormDesign2() {
   const [time,setTime] = useState();
   const [place,setPlace] = useState('');
 
-  const [loading,setLoading] = useState(true);
-  const [records,setRecords] = useState([]);
+  // const [loading,setLoading] = useState(true);
+  // const [records,setRecords] = useState([]);
   const [cityList,setCityList] = useState([]);
   const [finalCityList, setFinalCityList] = useState([]);
   const [placemsg, setPlacemsg] = useState("");
 
 
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
 
   let apiUrl = process.env.REACT_APP_GEMTOOL_API_URL;
@@ -63,9 +65,9 @@ export default function FormDesign2() {
   };
 
 
-  const findGems = (event) =>{
+  const findGems = async(event) =>{
     event.preventDefault();
-    setIsOpen(true)
+    // setIsOpen(true)
      let records = {
         id: Date.now(),
         name,
@@ -79,11 +81,14 @@ export default function FormDesign2() {
         place
       }
       
-      calculateResult(event, records)
-      // console.log(records)
+      let data = await calculateResult(event, records)
+      console.log(data)
+      
+      dispatch(addResultDetail(data))
+      let resultView = document.getElementById('resultView');
+      resultView && resultView.scrollIntoView({behavior: 'smooth'});
       
   }
-
 
   return (
     <>
@@ -92,7 +97,7 @@ export default function FormDesign2() {
             onSubmit={findGems}
           >
             <div className="flex  items-center pb-[30px]">
-              <img className="w-[80px] sm:w-[150px] rounded-[50%]" src="https://www.figma.com/file/oirTjXA2lj1adQiUhGg1tn/image/a72ce21712b5bac7c83afcf67ade9269561327cf" />
+              {/* <img className="w-[80px] sm:w-[150px] rounded-[50%]" src="https://www.figma.com/file/oirTjXA2lj1adQiUhGg1tn/image/a72ce21712b5bac7c83afcf67ade9269561327cf" /> */}
               <div className="ms-[10px] sm:ms-[30px] flex flex-col justify-center">
                 <h6 className="text-[14px] sm:text-[20px] lg:text-[32px] font-[400] sm:font-[500] leading-none">{themeSetting.title.enable && themeSetting.title.text}</h6>
                 <h6 className="text-[#813C01] text-[10px] md:text-[20px] leading-none sm:pb-[20px] font-[500] font-libra mt-[8px] sm:mt-[10px]">Fill the form to get result:</h6>

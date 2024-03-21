@@ -81,12 +81,13 @@ export default function FormDesign1() {
       }
       
       let data = await calculateResult(event, records)
-      console.log(data)
       
       dispatch(addResultDetail(data))
+      let resultView = document.getElementById('resultView');
+      resultView && resultView.scrollIntoView({behavior: 'smooth'});
   }
 
-      const themeSetting = useSelector((state) => state.theme.data.design);
+  const themeSetting = useSelector((state) =>  state.theme && state.theme.data && state.theme.data.design);
 
 
 
@@ -97,7 +98,7 @@ export default function FormDesign1() {
             className="rounded-[10px] col-span-3 lg:col-span-2 w-auto bg-white px-[20px]"
             onSubmit={findGems}
           >
-            <h1 style={{color: themeSetting.form.color}} className="font-inria-serif font-[700] text-[#813C01] text-[20px] md:text-[20px] leading-none sm:pb-[20px] font-libra">
+            <h1 style={{color: themeSetting.form.color}} className="font-inria-serif font-[700] text-[20px] md:text-[20px] leading-none sm:pb-[20px] font-libra">
                 Fill the form to get result:
             </h1>
             <div className={`grid grid-cols-1 gap-x-[25px] mt-[22px] gap-y-[20px] ${themeSetting.tableimage.enable === false ?  'md:grid-cols-3' : 'md:grid-cols-2' }`}>
@@ -105,7 +106,7 @@ export default function FormDesign1() {
                 <label 
                   htmlFor="name"
                   style={{color: themeSetting.form.color,borderColor: themeSetting.form.color}}
-                  className={`block text-[13px] tracking-normal sm:text-[16px]  mb-[4px] text-[#664421] font-inter font-[300]`}
+                  className={`block text-[13px] tracking-normal sm:text-[16px]  mb-[4px]  font-inter font-[300]`}
                 >
                   Enter your name 
                 </label>
@@ -125,7 +126,7 @@ export default function FormDesign1() {
               <div>
                 <label 
                   htmlFor="email"
-                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[300]"
+                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px]  font-inter font-[300]"
                   style={{color: themeSetting.form.color}}
                 >
                   Enter your email
@@ -147,7 +148,7 @@ export default function FormDesign1() {
               <div>
                 <label 
                   htmlFor="phone"
-                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[300]"
+                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px]  font-inter font-[300]"
                   style={{color: themeSetting.form.color}}
                 >
                   Enter your phone number
@@ -169,7 +170,7 @@ export default function FormDesign1() {
               <div>
                 <label 
                   htmlFor="gender"
-                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[300]"
+                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px]  font-inter font-[300]"
                   style={{color: themeSetting.form.color}}
                 >
                   Enter your gender
@@ -192,7 +193,7 @@ export default function FormDesign1() {
               <div>
                 <label 
                   htmlFor="purpose-option"
-                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[300]"
+                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px]  font-inter font-[300]"
                   style={{color: themeSetting.form.color}}
                 >
                   Purpose to wear gemstone
@@ -221,7 +222,7 @@ export default function FormDesign1() {
               <div>
                 <label 
                   htmlFor="weight"
-                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[300]"
+                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px]  font-inter font-[300]"
                   style={{color: themeSetting.form.color}}
                 >
                   Body weight (in kg)
@@ -244,7 +245,7 @@ export default function FormDesign1() {
               <div>
                 <label 
                   htmlFor="date-of-birth"
-                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[300]"
+                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px]  font-inter font-[300]"
                   style={{color: themeSetting.form.color}}
                 >
                   Enter your birth date
@@ -267,7 +268,7 @@ export default function FormDesign1() {
               <div>
                 <label 
                   htmlFor="birth-time"
-                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[300]"
+                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px]  font-inter font-[300]"
                   style={{color: themeSetting.form.color}}
                 >
                   Enter your birth time
@@ -289,7 +290,7 @@ export default function FormDesign1() {
               <div className="relative">
                 <label 
                   htmlFor="location"
-                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-inter font-[300]"
+                  className="block text-[13px] tracking-normal sm:text-[16px] mb-[4px]  font-inter font-[300]"
                   style={{color: themeSetting.form.color}}
                 >
                   Enter your birth place

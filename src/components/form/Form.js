@@ -10,6 +10,7 @@ export default function Form() {
     <>
       {themeSetting && themeSetting.theme === 1 && <FormDesign1/>}
       {themeSetting && themeSetting.theme === 2 && <FormDesign2/>}
+      {themeSetting && themeSetting.theme === 3 && <FormDesign3/>}
     </>
   )
 }
