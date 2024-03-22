@@ -130,7 +130,7 @@ export default function ResultTheme3() {
                         {" "}
                         {resultDetail && resultDetail.gems[0].name}{" "}
                       </span>
-                      , is best for you
+                       is best for you
                     </div>
                   </div>
                 )}
@@ -152,7 +152,7 @@ export default function ResultTheme3() {
                       Rudraksha
                     </div>
                     <div className="p-[15px] leading-none w-[70%] font-inter font-[400]">
-                      {resultDetail && resultDetail.rudraksh[0].name}, is best
+                      {resultDetail && resultDetail.rudraksh[0].name} is best
                       for you
                     </div>
                   </div>
