@@ -1,9 +1,9 @@
 {
     "design": {
-        "theme": 1,
+        "theme": 3,
         "header": {
             "enable": true,
-            "img": "https://images.appypie.com/wp-content/uploads/2022/11/01064247/YouTube-Banner-Ideas-and-Examples-for-Design-Inspiration.jpg"
+            "img": "https://png.pngtree.com/thumb_back/fh260/back_pic/00/02/44/5056179b42b174f.jpg"
         },
         "title": {
             "enable": true,
@@ -11,7 +11,7 @@
             "color": "red"
         },
         "form": {
-            "color": "#153644"
+            "color": "green" 
         },
         "tableimage": {
             "enable": true,
@@ -22,7 +22,7 @@
             "rashidetails": true,
             "gems": true,
             "bracelet": true,
-            "rudraksh": true,
+            "rudraksh": false,
             "product": true
         },
         "footer": {

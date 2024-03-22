@@ -6,7 +6,7 @@ import ResultTheme3 from './ResultTheme3';
 
 export default function Result() {
 
-    const themeSetting = useSelector((state) => state.theme.data.design);
+  const themeSetting = useSelector((state) => state.theme.data.design);
   return (
     <>
     { themeSetting && themeSetting.theme === 1 && <ResultTheme1/>}

@@ -20,7 +20,6 @@ export default function Products() {
     braceletName && braceletName.forEach((value) =>{
       braceletNameArr.push(value.name)
     })
-    // console.log(braceletNameArr);
     const productList = {rudrakshList,braceletList,gemsList}
     let result = getProductSuggestions(gemsName,rudrakshName,braceletNameArr,productList)
     setProducts(result)
@@ -32,15 +31,15 @@ export default function Products() {
   <div className="md:px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[12px] px-[20px] sm:p-0">
 
     {
-      products && products.rudrakshProduct && products.rudrakshProduct.map((value,index) =>{
+      themeSetting && themeSetting.resultbox.rudraksh && products && products.rudrakshProduct && products.rudrakshProduct.map((value,index) =>{
         return (
-          <div key={index} className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
+          <div key={index} className="max-w-[384px] bg-white pb-[8px] rounded-[6px] ">
             <div className="relative">
               <img className="w-full rounded-[10px]" src={value.img} alt="Colors" />
               </div>
-            <h1 className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">{value.name}</h1>
-            <div className="my-[8px] text-center">
-              <a target='_blank' rel="noreferrer" href={value.link} style={{backgroundColor: themeSetting.form.color}} className=" mt-[6px] text-[16px] px-[12px] text-white bg-indigo-600 py-[8px] rounded-[4px]">Buy Now</a>
+            <h1 style={{color: themeSetting.form.color}} className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">{value.name}</h1>
+            <div className="my-[12px] text-center">
+              <a target='_blank' rel="noreferrer" href={value.link} style={{backgroundColor: themeSetting.form.color}} className="text-[16px] pt-[8px] px-[16px] pb-[10px] text-white bg-indigo-600 rounded-[4px]">Buy Now</a>
             </div>
           </div>          
         )
@@ -48,15 +47,15 @@ export default function Products() {
     }
 
   {
-      products && products.gemsProduct && products.gemsProduct.map((value,index) =>{
+      themeSetting && themeSetting.resultbox.gems && products && products.gemsProduct && products.gemsProduct.map((value,index) =>{
         return (
-          <div key={index} className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
+          <div key={index} className="max-w-[384px] bg-white pb-[8px] rounded-[6px] ">
             <div className="relative">
               <img className="w-full rounded-[10px]" src={value.img} alt="Colors" />
               </div>
-            <h1 className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">{value.name}</h1>
-            <div className="my-[8px] text-center">
-              <a target='_blank' rel="noreferrer" href={value.link} style={{backgroundColor: themeSetting.form.color}} className=" mt-[6px] text-[16px] px-[12px] text-white bg-indigo-600 py-[8px] rounded-[4px]">Buy Now</a>
+            <h1 style={{color: themeSetting.form.color}} className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">{value.name}</h1>
+            <div className="my-[12px] text-center">
+              <a target='_blank' rel="noreferrer" href={value.link} style={{backgroundColor: themeSetting.form.color}} className="text-[16px] pt-[8px] px-[16px] pb-[10px] text-white bg-indigo-600 rounded-[4px]">Buy Now</a>
             </div>
           </div>          
         )
@@ -65,18 +64,18 @@ export default function Products() {
 
 
 {
-  products && products.braceletProduct && products.braceletProduct.map((productGroup, groupIndex) => {
+  themeSetting && themeSetting.resultbox.bracelet && products && products.braceletProduct && products.braceletProduct.map((productGroup, groupIndex) => {
     return(
     <div key={`group-${groupIndex}`}>
       {productGroup.map((value, index) => {
         return(
-        <div key={`product-${groupIndex}-${index}`} className="max-w-[384px] bg-white pb-[8px] rounded-[12px] transform hover:scale-105 transition duration-500">
+        <div key={`product-${groupIndex}-${index}`} className="max-w-[384px] bg-white pb-[8px] rounded-[6px] ">
           <div className="relative">
             <img className="w-full rounded-[10px]" src={value.img} alt={value.name} />
           </div>
-          <h1 className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">{value.name}</h1>
-          <div className="my-[8px] text-center">
-            <a target='_blank' rel="noreferrer" href={value.link} style={{backgroundColor: themeSetting.form.color}} className="mt-[6px] text-[16px] px-[12px] text-white bg-indigo-600 py-[8px] rounded-[4px]">Buy Now</a>
+          <h1 style={{color: themeSetting.form.color}} className="mt-[16px] text-gray-800 text-[16px] font-[500] cursor-pointer text-center">{value.name}</h1>
+          <div className="my-[12px] text-center">
+          <a target='_blank' rel="noreferrer" href={value.link} style={{backgroundColor: themeSetting.form.color}} className="text-[16px] pt-[8px] px-[16px] pb-[10px] text-white bg-indigo-600 rounded-[4px]">Buy Now</a>
           </div>
         </div>
       )})

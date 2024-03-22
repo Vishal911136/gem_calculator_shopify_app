@@ -117,7 +117,7 @@ export default function FormDesign1() {
                     name="name"
                     id="name"
                     autoComplete="given-name"
-                    className="block w-full rounded-[40px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300]"
+                    className="block w-full rounded-[40px] min-h-[50px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300]"
                     onChange={(e) => setName(e.target.value)} 
                     required
                   />
@@ -138,7 +138,7 @@ export default function FormDesign1() {
                     name="email"
                     id="email"
                     autoComplete="email"
-                    className="block w-full rounded-[40px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300]"
+                    className="block w-full rounded-[40px] min-h-[50px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300]"
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
@@ -160,7 +160,7 @@ export default function FormDesign1() {
                     name="phone"
                     id="phone"
                     autoComplete="given-name"
-                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-[40px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300]"
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-[40px] min-h-[50px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300]"
                     onChange={(e) => setMobile(e.target.value)}
                     required
                     
@@ -180,7 +180,7 @@ export default function FormDesign1() {
                     id="countries"
                     onChange={(e) => setGender(e.target.value)}
                     required
-                    className="block w-full rounded-[40px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300] bg-white"
+                    className="block w-full rounded-[40px] min-h-[50px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300] bg-white"
                     
                   >
                     <option value="">Gender</option>
@@ -201,7 +201,7 @@ export default function FormDesign1() {
                 <div className="select-container">
                   <select
                     id="countries"
-                    className="block w-full rounded-[40px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300] bg-white"
+                    className="block w-full rounded-[40px] min-h-[50px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300] bg-white"
                     onChange={(e) => setPurpose(e.target.value)}
                     required
                     
@@ -234,7 +234,7 @@ export default function FormDesign1() {
                     name="weight"
                     id="weight"
                     autoComplete="family-name"
-                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-[40px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300]"
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-[40px] min-h-[50px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300]"
                     onChange={(e) => setBodyWeight(e.target.value)}
                     required
                     
@@ -257,7 +257,7 @@ export default function FormDesign1() {
                     id="date"
                     placeholder="Date"
                     autoComplete="given-name"
-                    className="block w-full rounded-[40px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300] bg-white"
+                    className="block w-full rounded-[40px] min-h-[50px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300] bg-transparent"
                     onChange={(e) => setDate(e.target.value)}
                     required
                     
@@ -276,7 +276,7 @@ export default function FormDesign1() {
                 <div className="">
                   <input
                     autoComplete="given-name"
-                    className="block w-full rounded-[40px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300] bg-white"
+                    className="block w-full rounded-[40px] min-h-[50px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300] bg-transparent"
                     onChange={(e) => setTime(e.target.value)}
                     required
                     id="appt-time"
@@ -302,7 +302,7 @@ export default function FormDesign1() {
                     id="location"
                     autoComplete="given-name"
                     list="timeZonesValue"
-                    className="block w-full rounded-[40px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300]"
+                    className="block w-full rounded-[40px] min-h-[50px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-gray-300 focus:border-gray-400 outline-none shadow-none font-inter font-[300]"
                     onChange={(e) => fetchLocation(e)}
                     required
                     value={place}
@@ -332,7 +332,7 @@ export default function FormDesign1() {
                 <button
                     type="submit"
                     style={{backgroundColor: themeSetting.form.color}}
-                    className="block w-full  rounded-[40px] btn_color py-[12px] sm:py-[12px] text-center text-[20px] font-[500] bg-[#00182E] text-white hover:shadow-lg hover:bg-[#F0ECE9] hover:opacity-[.8]"
+                    className="block w-full  rounded-[40px] min-h-[50px] btn_color py-[12px] sm:py-[12px] text-center text-[20px] font-[500] bg-[#00182E] text-white hover:shadow-lg hover:bg-[#F0ECE9] hover:opacity-[.8]"
                 >
                     Submit
                 </button>

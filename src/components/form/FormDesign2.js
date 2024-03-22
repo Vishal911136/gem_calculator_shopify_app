@@ -17,16 +17,9 @@ export default function FormDesign2() {
   const [date,setDate] = useState();
   const [time,setTime] = useState();
   const [place,setPlace] = useState('');
-
-  // const [loading,setLoading] = useState(true);
-  // const [records,setRecords] = useState([]);
   const [cityList,setCityList] = useState([]);
   const [finalCityList, setFinalCityList] = useState([]);
   const [placemsg, setPlacemsg] = useState("");
-
-
-  // const [isOpen, setIsOpen] = useState(false);
-
 
   let apiUrl = process.env.REACT_APP_GEMTOOL_API_URL;
   const fetchLocation = async (e) => {
@@ -48,7 +41,6 @@ export default function FormDesign2() {
         let res = await instance.get(
           `${apiUrl}/search/${strArray[0]}`
         );
-        // res = await res.json();
         setCityList(res.data);
         setFinalCityList(res.data);
         setPlacemsg("");
@@ -81,8 +73,7 @@ export default function FormDesign2() {
         place
       }
       
-      let data = await calculateResult(event, records)
-      console.log(data)
+      let data = await calculateResult(event, records);
       
       dispatch(addResultDetail(data))
       let resultView = document.getElementById('resultView');
@@ -93,21 +84,22 @@ export default function FormDesign2() {
   return (
     <>
           <form
-            className=" rounded-[10px] col-span-3 lg:col-span-2 w-auto bg-white/0 backdrop-blur-[2px] p-[25px] md:px-[80px] md:py-[0px] sm:p-[35px] relative my-[100px]"
+            className=" rounded-[10px] col-span-3 lg:col-span-2 w-auto bg-white/0 backdrop-blur-[2px] p-[25px] md:px-[80px] md:py-[0px] sm:p-[35px] relative my-[20px] sm:my-[50px]"
             onSubmit={findGems}
           >
             <div className="flex  items-center pb-[30px]">
-              {/* <img className="w-[80px] sm:w-[150px] rounded-[50%]" src="https://www.figma.com/file/oirTjXA2lj1adQiUhGg1tn/image/a72ce21712b5bac7c83afcf67ade9269561327cf" /> */}
+              <img className="w-[80px] sm:w-[150px] rounded-[50%]" src="https://www.figma.com/file/oirTjXA2lj1adQiUhGg1tn/image/a72ce21712b5bac7c83afcf67ade9269561327cf" alt="moon"/>
               <div className="ms-[10px] sm:ms-[30px] flex flex-col justify-center">
-                <h6 className="text-[14px] sm:text-[20px] lg:text-[32px] font-[400] sm:font-[500] leading-none">{themeSetting.title.enable && themeSetting.title.text}</h6>
-                <h6 className="text-[#813C01] text-[10px] md:text-[20px] leading-none sm:pb-[20px] font-[500] font-libra mt-[8px] sm:mt-[10px]">Fill the form to get result:</h6>
+                <h6 style={{color: themeSetting.title.color}} className="text-[18px] sm:text-[20px] lg:text-[32px] font-[400] sm:font-[500] leading-none">{themeSetting.title.enable && themeSetting.title.text}</h6>
+                <h6 className="text-[14px] md:text-[20px] leading-none sm:pb-[20px] font-[500] font-libra mt-[8px] sm:mt-[10px]">Fill the form to get result:</h6>
               </div>
             </div>
             <div className="bg grid grid-cols-1 gap-x-[25px] gap-y-[20px] sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
               <div>
                 <label
+                  style={{color: themeSetting.form.color}}
                   htmlFor="name"
-                  className="block text-[14px] tracking-normal sm:text-[16px]  mb-[4px] text-[#664421] font-manrope"
+                  className="block text-[14px] tracking-normal sm:text-[16px]  mb-[4px] font-inter font-[400]"
                 >
                   Enter your name
                 </label>
@@ -118,7 +110,7 @@ export default function FormDesign2() {
                     name="name"
                     id="name"
                     autoComplete="given-name"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full min-h-[50px] rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setName(e.target.value)} 
                     required
                   />
@@ -126,8 +118,9 @@ export default function FormDesign2() {
               </div>
               <div>
                 <label
+                  style={{color: themeSetting.form.color}}
                   htmlFor="last-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] font-inter font-[400]"
                 >
                   Enter your email
                 </label>
@@ -138,7 +131,7 @@ export default function FormDesign2() {
                     name="email"
                     id="email"
                     autoComplete="email"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full min-h-[50px] rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     
@@ -148,8 +141,9 @@ export default function FormDesign2() {
 
               <div>
                 <label
+                  style={{color: themeSetting.form.color}}
                   htmlFor="first-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] font-inter font-[400]"
                 >
                   Enter your phone number
                 </label>
@@ -160,7 +154,7 @@ export default function FormDesign2() {
                     name="phone"
                     id="phone"
                     autoComplete="given-name"
-                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full min-h-[50px] rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setMobile(e.target.value)}
                     required
                   />
@@ -168,8 +162,9 @@ export default function FormDesign2() {
               </div>
               <div>
                 <label
+                  style={{color: themeSetting.form.color}}
                   htmlFor="last-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] font-inter font-[400]"
                 >
                   Enter your gender
                 </label>
@@ -178,7 +173,7 @@ export default function FormDesign2() {
                     id="countries"
                     onChange={(e) => setGender(e.target.value)}
                     required
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full min-h-[50px] rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] outline-none shadow-none font-inter font-[400]"
                   >
                     <option value="">Gender</option>
                     <option value="male">Male</option>
@@ -189,15 +184,16 @@ export default function FormDesign2() {
 
               <div>
                 <label
+                  style={{color: themeSetting.form.color}}
                   htmlFor="first-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] font-inter font-[400]"
                 >
                   Purpose to wear gemstone
                 </label>
                 <div className="select-container">
                   <select
                     id="countries"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full min-h-[50px] rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setPurpose(e.target.value)}
                     required
                     
@@ -217,8 +213,9 @@ export default function FormDesign2() {
               </div>
               <div>
                 <label
+                  style={{color: themeSetting.form.color}}
                   htmlFor="last-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] font-inter font-[400]"
                 >
                   Body weight (in kg)
                 </label>
@@ -229,7 +226,7 @@ export default function FormDesign2() {
                     name="last-name"
                     id="last-name"
                     autoComplete="family-name"
-                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full min-h-[50px] rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setBodyWeight(e.target.value)}
                     required
                     
@@ -239,19 +236,20 @@ export default function FormDesign2() {
 
               <div>
                 <label
+                  style={{color: themeSetting.form.color}}
                   htmlFor="first-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] font-inter font-[400]"
                 >
                   Enter your birth date
                 </label>
-                <div className="w-full ">
+                <div className="w-full bg-white rounded-[40px]">
                   <input
                     type="date"
                     name="first-name"
                     id="first-name"
                     placeholder="Date"
                     autoComplete="given-name"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-[100%] min-h-[50px] rounded-[40px] bg-transparent border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setDate(e.target.value)}
                     required
                     
@@ -261,14 +259,17 @@ export default function FormDesign2() {
 
               <div>
                 <label
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  style={{color: themeSetting.form.color}}
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] font-inter font-[400]"
                 >
                   Enter your birth time
                 </label>
-                <div className="">
+                <div className="bg-white rounded-[40px]">
                   <input
                     autoComplete="given-name"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-[100%] min-h-[50px] rounded-[40px] bg-transparent border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] outline-none shadow-none font-inter font-[400]"
+                    // className="block text-left w-full min-h-10 bg-transparent min-h-[50px] rounded-[40px] border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] outline-none shadow-none font-inter font-[400]"
+                    // className="block text-left w-full min-h-10 bg-transparent rounded-lg border px-4 py-[1.3rem] sm:py-[1.7rem] text-[12px] sm:text-[14px] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => setTime(e.target.value)}
                     required
                     id="appt-time"
@@ -281,8 +282,9 @@ export default function FormDesign2() {
 
               <div className="relative">
                 <label
+                  style={{color: themeSetting.form.color}}
                   htmlFor="first-name"
-                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] text-[#664421] font-manrope"
+                  className="block text-[14px] tracking-normal sm:text-[16px] mb-[4px] font-inter font-[400]"
                 >
                   Enter your birth place
                 </label>
@@ -293,7 +295,7 @@ export default function FormDesign2() {
                     id="first-name"
                     autoComplete="given-name"
                     list="timeZonesValue"
-                    className="block w-full rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] placeholder:text-[#6f482167] focus:border-[#6f482167] outline-none shadow-none font-manrope"
+                    className="block w-full min-h-[50px] rounded-[40px] bg-white border px-[20px] text-[14px] sm:text-[16px] py-[15px] sm:py-[15px] outline-none shadow-none font-inter font-[400]"
                     onChange={(e) => fetchLocation(e)}
                     required
                     value={place}
@@ -324,7 +326,8 @@ export default function FormDesign2() {
             <div className=" mt-[40px] w-full md:w-[60%] mx-auto">
                 <button
                     type="submit"
-                    className="block w-full  rounded-[40px] px-4 py-[12px] sm:py-[12px] text-center text-[20px] font-[500] bg-[#00182E] text-white hover:shadow-lg hover:bg-[#F0ECE9] hover:text-[#664421] hover:outline outline-1 outline-[#664421] duration-[.3s]"
+                    style={{backgroundColor: themeSetting.form.color}}
+                    className="block w-full  min-h-[50px] rounded-[40px] px-4 py-[12px] sm:py-[12px] text-center text-[20px] font-[500] text-white opacity-[0.9] hover:opacity-[1]  duration-[.3s]"
                     >
                     Submit
                 </button>
